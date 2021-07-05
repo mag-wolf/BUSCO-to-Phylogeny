@@ -14,18 +14,27 @@ Does require specific conda environments!
 by Magnus Wolf 2021 (magnus.wolf@senckenberg.de)
 -------------------------------
 M.Sc. Magnus Wolf
+
 PhD-Student
+
 Senckenberg Biodiversity and Climate Research Center (SBiK-F)
+
 Group: Evolutionary Vertebrate Genomics
+
 Georg-Voigt-Straße 14-16, floor 4, room 4.07
+
 60325 Frankfurt am Main, Germany
 
 Installation:
 -------------------------------
 1.) Download the tarball
+
 2.) copy the tarball and rename it to what you desire
+
 3.) extract the renamed tarball
+
 4.) install dependencies via conda:
+
     -conda create --name MAFFTenv
     -conda install -n MAFFTenv -c bioconda mafft 
     -conda create --name CLIPKITenv
@@ -41,10 +50,14 @@ Usage:
 -------------------------------
 1.) Gather whole genome assemblies of all species you want to have in your tree, make sure to include an
 outgroup! Copy them in the renamed folder that you extracted previously. 
+
 2.) Open the script BUSCO-to-Phylogeny.sh with a text editor of your choice (e.g. nano).
+
 3.) Edit general dependencies. Especially the working directory.
+
 4.) Edit BUSCO-to-Phylogeny dependencies and parameters. Especially the OrthoDB database and the augustus 
 training species you want to use.
+
 5.) Edit options for BUSCO-to-PHYLOGENY. Call everything "TRUE" that you want to use. The pipeline 
 contains 10 subparts that can be run independently if all other subparts are called "FALSE". By
 leaving it as it is, everything will run one by one. 
