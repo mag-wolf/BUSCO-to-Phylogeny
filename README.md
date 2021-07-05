@@ -9,7 +9,7 @@ filters single copy orthologs by itself without the restriction to "core-gene-se
 All three scripts are combined in the script "Do_the_phylogenomics.sh" which can also be found on 
 my github page. 
 
-Does require specific conda environments!
+Does require perl, python3 and anaconda environments!
 
 by Magnus Wolf 2021 (magnus.wolf@senckenberg.de)
 -------------------------------
@@ -32,6 +32,8 @@ Installation:
 2.) copy the tarball and rename it to what you desire
 
 3.) extract the renamed tarball
+
+    tar -xzvf renamed.tar.gz renamed
 
 4.) install dependencies via conda:
 
