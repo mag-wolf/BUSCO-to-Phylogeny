@@ -62,7 +62,10 @@ training species you want to use.
 contains 10 subparts that can be run independently if all other subparts are called "FALSE". By
 leaving it as it is, everything will run one by one. 
 
-6.) bash BUSCO-to-Phylogeny.sh
+6.) Now simply run:
+    
+    bash BUSCO-to-Phylogeny.sh
+
 (i suggest piping screen outputs to an error log by adding "2>&1 | tee error.log" behind the bash command.)
 
 Here a list of all subparts:
