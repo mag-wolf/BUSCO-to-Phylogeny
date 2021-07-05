@@ -66,7 +66,10 @@ leaving it as it is, everything will run one by one.
     
     bash BUSCO-to-Phylogeny.sh
 
-(i suggest piping screen outputs to an error log by adding "2>&1 | tee error.log" behind the bash command.)
+I suggest piping screen outputs to an error log by adding: 
+
+    2>&1 | tee error.log
+ 
 
 Here a list of all subparts:
 ###
