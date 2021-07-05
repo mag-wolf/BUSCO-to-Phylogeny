@@ -37,14 +37,14 @@ Installation:
 
 4.) install dependencies via conda:
 
-    -conda create --name MAFFTenv
-    -conda install -n MAFFTenv -c bioconda mafft 
-    -conda create --name CLIPKITenv
-    -conda install -n CLIPKITenv -c jlsteenwyk clipkit
-    -conda create --name IQTREEenv
-    -conda install -n IQTREEenv -c bioconda iqtree
-    -conda create --name BUSCOenv
-    -conda install -n BUSCOenv -c bioconda -c conda-forge busco=5.1.2  #change version number if a newer version is available.
+    conda create --name MAFFTenv
+    conda install -n MAFFTenv -c bioconda mafft 
+    conda create --name CLIPKITenv
+    conda install -n CLIPKITenv -c jlsteenwyk clipkit
+    conda create --name IQTREEenv
+    conda install -n IQTREEenv -c bioconda iqtree
+    conda create --name BUSCOenv
+    conda install -n BUSCOenv -c bioconda -c conda-forge busco=5.1.2  #change version number if a newer version is available.
 
 Now you are ready to start.
 
