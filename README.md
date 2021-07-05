@@ -9,7 +9,7 @@ filters single copy orthologs by itself without the restriction to "core-gene-se
 All three scripts are combined in the script "Do_the_phylogenomics.sh" which can also be found on 
 my github page. 
 
-Does require perl, python3 and anaconda environments!
+Does require perl5, python3 and anaconda environments!
 
 by Magnus Wolf 2021 (magnus.wolf@senckenberg.de)
 -------------------------------
@@ -76,25 +76,16 @@ I suggest piping screen outputs to an error log by adding:
 Here a list of all subparts:
 ###
 
-runbusco                   #run the BUSCO tool on every assembly for annotation and getting single copy orthologs.
-
-findsharedscos             #find BUSCO genes that are shared between all of the species you provided
-
-makealignments             #make alignments of all gene sequences using mafft
-
-trimmgenealignments        #trimm the alignments using clipkit
-
-filteralignments           #filter the alignments for to conserved genes
-
-concatgenealignments       #concatenate gene alignments into one big matrix using FASconCAT
-
-trimmsupermatrix           #trimm the concatenated alignment using clipkit
-
-constructgenetrees         #constructing gene trees of every single gene alignment using iqtree
-
-constructsupermtree        #constructing a tree from the concatenated alignment using iqtree
-
-constructsuperttree        #constructing a consensus tree based on all constructed genes trees using Astral 
+    runbusco                   #run the BUSCO tool on every assembly for annotation and getting single copy orthologs.
+    findsharedscos             #find BUSCO genes that are shared between all of the species you provided
+    makealignments             #make alignments of all gene sequences using mafft
+    trimmgenealignments        #trimm the alignments using clipkit
+    filteralignments           #filter the alignments for to conserved genes
+    concatgenealignments       #concatenate gene alignments into one big matrix using FASconCAT
+    trimmsupermatrix           #trimm the concatenated alignment using clipkit
+    constructgenetrees         #constructing gene trees of every single gene alignment using iqtree
+    constructsupermtree        #constructing a tree from the concatenated alignment using iqtree
+    constructsuperttree        #constructing a consensus tree based on all constructed genes trees using Astral 
 
 ###
 
