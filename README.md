@@ -51,7 +51,8 @@ Now you are ready to start.
 Usage:
 -------------------------------
 1.) Gather whole genome assemblies in fasta format for all species you want to have in your tree. Make sure to include an
-outgroup! Copy them in the renamed folder that you extracted previously. 
+outgroup! Copy them in the renamed folder that you extracted previously. For convenience, I would recommend naming the 
+fasta files after the scientific species name. E.g.: Balaenoptera_physalus.fasta, Balaenoptera_musculus.fasta etc.... 
 
 2.) Open the script BUSCO-to-Phylogeny.sh with a text editor of your choice (e.g. nano).
 
