@@ -14,7 +14,7 @@
 #
 #################################general dependencies and parameters#####################################################################
 source ~/anaconda3/etc/profile.d/conda.sh               #make sure to be able to switch between conda envs
-WORKINGDIR=/path/to/the/Working/directory               #path to the Working directory
+WORKINGDIR=/home/mwolf/whale-phylo-BUSCO               #path to the Working directory
 ulimit -n 2048                                          #get more doable jobs-temp files, I suggest not to change that.
 THREADS=40                                              #number of threads
 TASKS=40                                                #number of parallel task to run alignment or trimming processes
@@ -27,6 +27,12 @@ ASTRAL=$WORKINGDIR"/Astral/astral.5.7.3.jar"            #path to the Astral java
 ##################################BUSCO-to-Phylogeny dependencies and parameters#########################################################
 ODB10=actinopterygii_odb10                              #name of the OrthoDB database that should be used for all species
 SPECIES=zebrafish                                       #name of the species that augustus is trained for and should be used in BUSCO
+minPIperbrachen=3					#cutoff to kick out too conserved genes. The cutoff value should be a rough estimate of how many mutations per brach you want. 
+#							#I used 3 but more is always better. The less species you use the higher you can go. I got ~500 genes with 30 species and a 
+#							#PI-sutoff of 3. I would try a couple of different ones.
+maxVariance=0.25					#cutoff to kick out too variavle genes. This should be a percentile cutoff and a rough estimation when a gene is to variable. 
+#							#I chose 25% in variable sides based on my datasets. But again, I would try a couple of different cutoffs. The lower the better.
+#							#I would suggest to different combinations of both cutoffs used here and aim for ~500 resulting genes.  
 export BUSCO_CONFIG_FILE=$WORKINGDIR"/config.ini"       #provide the path to a BUSCO config file after the #=# sign, not necessary when config is in Working Dir
 EXTRACTSCOS=$WORKINGDIR"/extract_scos_BUSCO.py"         #path to my python script extract_scos_BUSCO.py, no change necessary when the script is in the working directory
 BUSCOenv=BUSCO5env                                      #name of BUSCO5 env, should have the newest BUSCO5 installed.
@@ -292,15 +298,25 @@ if [[ "$filteralignments" = TRUE ]]
                 ntaxa=$(cat $file | grep ">" | wc -l)
                 minsites1=$((2 * $ntaxa))
                 minsites2=$(($minsites1 - 3))
-                minsites3=$((minsites2 * 6))
-                echo "the minimal number of sites neccessary for "$file" is "$minsites3"."
+                minsites3=$(($minsites2 * $minPIperbrachen))
+                echo "the minimal number of parsimony informative sites neccessary for "$file" is "$minsites3"."
                 onlyseq=$(cat $file | grep -v ">" | tr "\n" "_" | sed "s/_//g")
                 nsites=$(echo $onlyseq | wc -c)
                 nsites2=$(($nsites / $ntaxa))
-                echo "we found "$nsites2" in "$file"."
+                echo "we found "$nsites2" parsimony informative sites in "$file"."
                 if [ "$nsites2" -lt "$minsites3" ];
                 then
                         counter=$((counter+1))
+			echo "removing "$genename" from further analysis because it was too conserves."
+                        rm $genename"_alig_trimmed.fasta" $genename"_parinfosite.fasta" $genename"_alig_noIUPAC.fasta"
+                fi
+		onlytotalsites=$(cat $genename"_alig_trimmed.fasta" | grep -v ">" | tr "\n" "_" | sed "s/_//g")
+		ntotalsites=$(echo $onlytotalsites | wc -c)
+		ntotalsites2=$(($ntotalsites / $ntaxa))
+                if [ "$ntotalsites2" -gt "$maxVariance" ];
+                then
+                        counter=$((counter+1))
+			echo "removing "$genename" from further analysis because it was too variable."
                         rm $genename"_alig_trimmed.fasta" $genename"_parinfosite.fasta" $genename"_alig_noIUPAC.fasta"
                 fi
         done
@@ -309,12 +325,19 @@ if [[ "$filteralignments" = TRUE ]]
         echo "removed files :"$counter
         if [[ "$filecount" -lt 50 ]];
         then
-                echo "you got to less sequences to proceed. This means that either the"
+                echo "you got to less sequences to proceed. This means that either"
                 echo "your missing data filtering in the findsharedbusco step was to"
-                echo "strict or that your genes were to conserved and most of them"
-                echo "contained to less information. Try with relaxed filter settings"
-                echo "or other orthodb clades."
-                #break
+                echo "strict or that either the minPIperbrachen or the maxVariance"
+		echo "cutoffs were to strict. Retry with less strict cutoffs or"
+		echo "exclude some species or use another orthodb clade."
+		while true; do
+			read -p "Do you wish to proceed anyways?" yn
+			case $yn in
+				[Yy]* ) echo "nice try"; break;;
+				[Nn]* ) exit;;
+				* ) echo "Please answer yes or no.";;
+			esac
+		done
         fi
         rm *_parinfosite.fasta
         cd ./../
