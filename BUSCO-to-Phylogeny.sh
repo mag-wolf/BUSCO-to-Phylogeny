@@ -27,11 +27,11 @@ ASTRAL=$WORKINGDIR"/Astral/astral.5.7.3.jar"            #path to the Astral java
 ##################################BUSCO-to-Phylogeny dependencies and parameters#########################################################
 ODB10=actinopterygii_odb10                              #name of the OrthoDB database that should be used for all species
 SPECIES=zebrafish                                       #name of the species that augustus is trained for and should be used in BUSCO
-minPIperbrachen=3					#cutoff to kick out too conserved genes. The cutoff value should be a rough estimate of how many mutations per brach you want. 
-#							#I used 3 but more is always better. The less species you use the higher you can go. I got ~500 genes with 30 species and a 
+minPIperbrachen=1					#cutoff to kick out too conserved genes. The cutoff value should be a rough estimate of how many mutations per brach you want. 
+#							#I used 1 but more is always better. The less species you use the higher you can go. I got ~500 genes with 30 species and a 
 #							#PI-sutoff of 3. I would try a couple of different ones.
-maxVariance=0.25					#cutoff to kick out too variavle genes. This should be a percentile cutoff and a rough estimation when a gene is to variable. 
-#							#I chose 25% in variable sides based on my datasets. But again, I would try a couple of different cutoffs. The lower the better.
+maxVariance=0.40					#cutoff to kick out too variavle genes. This should be a percentile cutoff and a rough estimation when a gene is to variable. 
+#							#I chose 40% in variable sides based on my datasets. But again, I would try a couple of different cutoffs. The lower the better.
 #							#I would suggest to different combinations of both cutoffs used here and aim for ~500 resulting genes.  
 export BUSCO_CONFIG_FILE=$WORKINGDIR"/config.ini"       #provide the path to a BUSCO config file after the #=# sign, not necessary when config is in Working Dir
 EXTRACTSCOS=$WORKINGDIR"/extract_scos_BUSCO.py"         #path to my python script extract_scos_BUSCO.py, no change necessary when the script is in the working directory
