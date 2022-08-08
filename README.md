@@ -2,13 +2,6 @@
 -------------------------------
 
 A pipeline created to automatize all my steps for phylogenetic analyses using the BUSCO toolkit.
-This script is one of three scripts I wrote to create phylogenomic trees. Others are "Mapping-to-Phylogeny",
-which will use mapping files to create genome fragments before constructing a tree and "Annatation-to-Phylogeny",
-which is a more exhaustive and complex version of "BUSCO-to-Phylogeny" that annotates assemblies and
-filters single copy orthologs by itself without the restriction to "core-gene-set" like used in BUSCO.
-All three scripts are combined in the script "Do_the_phylogenomics.sh" which can also be found on 
-my github page. 
-
 Does require perl5, python3 and anaconda environments!
 
 by Magnus Wolf 2021 (magnus.wolf@senckenberg.de)
