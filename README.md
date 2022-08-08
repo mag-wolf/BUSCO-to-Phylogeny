@@ -74,13 +74,13 @@ Here a list of all subparts:
     findsharedscos             #find BUSCO genes that are shared between all of the species you provided
     makealignments             #make alignments of all gene sequences using mafft
     trimmgenealignments        #trimm the alignments using clipkit
-    filteralignments           #filter the alignments for to conserved genes
+    constructgenetrees         #constructing genestrees from trimmed alignments using iqtree
+    filtergenetrees            #filter genetrees and alignments based on the maximum likelihood distance (throw out too conserved and too variable genes)
     concatgenealignments       #concatenate gene alignments into one big matrix using FASconCAT
     trimmsupermatrix           #trimm the concatenated alignment using clipkit
-    constructgenetrees         #constructing gene trees of every single gene alignment using iqtree
     constructsupermtree        #constructing a tree from the concatenated alignment using iqtree
     constructsuperttree        #constructing a consensus tree based on all constructed genes trees using Astral 
-
+    
 ###
 
 
