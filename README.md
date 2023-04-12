@@ -84,5 +84,15 @@ Here a list of all subparts:
 ###
 
 
+
+Citation:
+-------------------------------
+If you use this pipeline for your research I would greatly appreciate if you cite the
+study during which I created this pipeline:
+
+Clément Schneider, Christian Woehle, Carola Greve, Cyrille A D'Haese, Magnus Wolf, Michael Hiller, Axel Janke, Miklós Bálint, Bruno Huettel, Two high-quality de novo genomes from single ethanol-preserved specimens of tiny metazoans (Collembola), GigaScience, Volume 10, Issue 5, May 2021, giab035, https://doi.org/10.1093/gigascience/giab035
+
+
+
 Good luck!
 -------------------------------
